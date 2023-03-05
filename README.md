@@ -1,5 +1,5 @@
-# WeatherPredictionSystem
-A website that uses Flask to make predictions about the weather
+# Weather Prediction System
+A Flask website that makes predictions about the weather based on user inputs
 
 You may want to setup an environment for this project. 
 ## Setup
@@ -11,5 +11,7 @@ You may want to setup an environment for this project.
 
 ## What it looks like:
 ![login screen](./.github/login.png?raw=true)
+---
 ![signup page](./.github/sign-up.png?raw=true)
+---
 ![prediction example](./.github/prediction.png?raw=true)
