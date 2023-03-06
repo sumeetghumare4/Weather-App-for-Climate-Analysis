@@ -25,7 +25,7 @@ To create a server the proper way, follow these instructions:
 2. Install Nginx
 3. Install gunicorn3
 4. pip install -r requirements.txt
-5. Change the last line in `app.py` to `app.run(host=0.0.0.0, debug=False)`
+5. Change the last line in `app.py` to `app.run(host='0.0.0.0', debug=False)`
 6. Use the Nginx configuration below
 7. Use the gunicorn daemon configuration below
 8. Go to the IP address of the server in a browser
