@@ -34,8 +34,7 @@ def train(dataset: pd.DataFrame) -> None:
 
 
 def main():
-    from read_database import read_database
-    dataset = read_database()
+    dataset = pd.read_csv("dataset.csv")
     train(dataset)
 
 if __name__ == "__main__":
