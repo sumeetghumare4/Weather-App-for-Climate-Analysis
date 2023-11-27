@@ -21,21 +21,23 @@ To create a quick-and-dirty server, follow these instructions:
 
 ## Setup Production Server
 To create a server the proper way, follow these instructions:
-1. Install Python and pip
-2. Install Nginx
-3. Install gunicorn3
-4. pip install -r requirements.txt
-5. Change the last line in `app.py` to `app.run(host='0.0.0.0', debug=False)`
-6. Use the Nginx configuration below
-7. Use the gunicorn daemon configuration below
-8. Go to the IP address of the server in a browser
+1. Install Python 3.10.4, pip, and venv. Pyenv is preferred for this.
+2. `apt install nginx git`
+3. `git clone https://github.com/WillChamness/WeatherPredictionSystem && cd WeatherPredictionSystem`
+4. `python -m venv env` and `source env/bin/activate`
+5. Install `gunicorn` with pip or apt. Pip is preferred and will be assumed for the gunicorn config.
+6. `pip install -r requirements.txt`
+7. Change the last line in `app.py` to `app.run(host='0.0.0.0', debug=False)`
+8. Use the Nginx configuration below
+9. Use the gunicorn daemon configuration below
+10. Go to the IP address of the server in a browser
 
 
 ### Nginx Config
 Create `/etc/nginx/sites-enabled/flask-app` and add the following:
 ```
 server {
-        listen 80;
+        listen 80 default_server;
 
         location / {
                 proxy_pass http://127.0.0.1:8000;
@@ -62,7 +64,7 @@ Description=Flask App
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/gunicorn3 --chdir /var/www/html/ app:app
+ExecStart=/path/to/WeatherPredictionSystem/env/bin/gunicorn --chdir /path/to/WeatherPredictionSystem/ app:app
 
 [Install]
 WantedBy=multi-user.target
