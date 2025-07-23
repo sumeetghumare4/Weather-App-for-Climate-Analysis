@@ -2,7 +2,7 @@
 A website that uses machine learning to predict the weather.
 
 ## What it looks like:
-![prediction example](./.github/Pasted image 20250723225726.png?raw=true)
+![prediction example](./.github/Pasted.png?raw=true)
 
 ## Features
 - Flask web server for Debian/Ubuntu
