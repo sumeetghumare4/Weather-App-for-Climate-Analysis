@@ -1,37 +1,64 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-  %}
-  <h1 align="center">Weather</h1>
-  <body>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgmSIJeg5PKK_tLSVfMmKT5D0a36jWKFOMyA&usqp=CAU">
-    <br>
-    <form method="POST">
-      {% for message in get_flashed_messages()%}
-          <p> {{message}} </p>
-      {% endfor %}
-      <br>
-      <p>
-        <label for="temperature">Temperature (Fahrenheit):</label><br>
-        <input type="number" step="any" name="temperature">
-      </p>
-      <br>
-      <p>
-        <label for="humidity">Humidity (percentage):</label><br>
-        <input type="number" step="any" name="humidity">
-      </p>
-      <p>
-        <label for="precip">Precipitation (inches):</label><br>
-        <input type="number" step="any" name="precip">
-      </p>
-      <p>
-        <label for="ws">Wind Speed: (mph)</label><br>
-        <input type="number" step="any" name="ws">
-      </p>
-      <p>
-        <label for="Pressure">Pressure (millibars):</label><br>
-        <input type="number" step="any" name="pressure">
-      </p>
-      <input type="submit" value="Enter" id="weather">
+{% extends "base.html" %}
+{% block title %}Weather{% endblock %}
+{% block content %}
+<div class="overlay"></div>
+<div class="weather-main-card">
+    <div class="location">London</div>
+    <div class="icon"><i class="fas fa-cloud-sun"></i></div>
+    <div class="temp">14°</div>
+    <div class="desc">Cloudy</div>
+    <form method="POST" action="" style="margin-bottom:1.2rem;">
+        <div class="form-group" style="margin-bottom:0.7rem;">
+            <input type="number" class="form-control" name="temperature" placeholder="Temperature (°C)" required>
+        </div>
+        <div class="form-group" style="margin-bottom:0.7rem;">
+            <input type="number" class="form-control" name="humidity" placeholder="Humidity (%)" required>
+        </div>
+        <div class="form-group" style="margin-bottom:0.7rem;">
+            <input type="number" class="form-control" name="precip" placeholder="Precipitation (mm)" required>
+        </div>
+        <div class="form-group" style="margin-bottom:0.7rem;">
+            <input type="number" class="form-control" name="ws" placeholder="Wind Speed (km/h)" required>
+        </div>
+        <div class="form-group" style="margin-bottom:0.7rem;">
+            <input type="number" class="form-control" name="pressure" placeholder="Pressure (hPa)" required>
+        </div>
+        <button type="submit" class="btn" style="width:100%;margin-top:0.6rem;">Predict Weather</button>
     </form>
-  </body>
-  
-  {% endblock %}
+    {% if prediction %}
+    <div class="prediction-result" style="font-size:1.5rem;font-weight:bold;margin-bottom:1rem;">
+        {{ prediction }}
+    </div>
+    {% endif %}
+    <div class="forecast-section">
+        <div class="forecast-title">5-day forecast</div>
+        <div class="forecast-list">
+            <div class="forecast-item">
+                <span class="day">Thu</span>
+                <span class="f-icon"><i class="fas fa-cloud-sun"></i></span>
+                <span class="temp-range">9° / 14°</span>
+            </div>
+            <div class="forecast-item">
+                <span class="day">Fri</span>
+                <span class="f-icon"><i class="fas fa-cloud"></i></span>
+                <span class="temp-range">9° / 12°</span>
+            </div>
+            <div class="forecast-item">
+                <span class="day">Sat</span>
+                <span class="f-icon"><i class="fas fa-cloud-showers-heavy"></i></span>
+                <span class="temp-range">10° / 13°</span>
+            </div>
+            <div class="forecast-item">
+                <span class="day">Sun</span>
+                <span class="f-icon"><i class="fas fa-sun"></i></span>
+                <span class="temp-range">12° / 18°</span>
+            </div>
+            <div class="forecast-item">
+                <span class="day">Mon</span>
+                <span class="f-icon"><i class="fas fa-cloud-sun-rain"></i></span>
+                <span class="temp-range">11° / 15°</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
